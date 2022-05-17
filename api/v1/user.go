@@ -7,7 +7,12 @@ import (
 	"net/http"
 )
 
-func AddUser(c *gin.Context) {
+type apiUser struct {
+}
+
+var User = new(apiUser)
+
+func (u *apiUser) AddUser(c *gin.Context) {
 	var user model.User
 	_ = c.ShouldBindJSON(&user)
 	code := model.ExitsUser(user.Username)
@@ -21,12 +26,12 @@ func AddUser(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"code": code, "data": user, "msg": errmsg.GetErrMsg(code)})
 
 }
-func GetUser(c *gin.Context) {
+func (u *apiUser) GetUser(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"code": 121, "data": 1, "msg": errmsg.GetErrMsg(200)})
+}
+func (u *apiUser) SaveUser(c *gin.Context) {
 
 }
-func SaveUser(c *gin.Context) {
-
-}
-func DeletUser(c *gin.Context) {
+func (u *apiUser) DeletUser(c *gin.Context) {
 
 }
