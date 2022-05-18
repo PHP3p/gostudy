@@ -2,9 +2,9 @@ package routes
 
 import (
 	v1 "day02/routes/v1"
+	"day02/utils"
 	"github.com/gin-gonic/gin"
 )
-import "day02/utils"
 
 func InitRouter() {
 	// 禁止日志颜色 处理window 控制台 【？？】 问题
