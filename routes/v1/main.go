@@ -6,11 +6,14 @@ import (
 )
 
 var (
-	user =api.User
+	user = api.User
 )
+
 // 初始化v1版本路由
 
 func InitRouter(r *gin.Engine) {
+
+	rLogin(r)
 	// 	用户路由组
 	rUser(r)
 

@@ -16,7 +16,7 @@ type User struct {
 
 func ExitsUser(name string) (code int) {
 	var u User
-	fmt.Sprintf("名字",name)
+	fmt.Sprintf("名字", name)
 	db.Select("id").Where("username=?", name).First(&u)
 	if u.ID > 0 {
 		return errmsg.ERROR_USERNAME_USED
@@ -25,13 +25,23 @@ func ExitsUser(name string) (code int) {
 }
 
 func CreatUser(data *User) int {
-	fmt.Println("shuju",&data)
+	fmt.Println("shuju", &data)
 
 	err := db.Create(&data).Error
 	if err != nil {
-		log.Fatal("创建用户失败",err)
+		log.Fatal("创建用户失败", err)
 		return errmsg.ERROR
 	}
 	return errmsg.SUCCSE
 
+}
+
+func CheckLogin(name string) (code int) {
+	var u User
+	fmt.Sprintf("名字", name)
+	db.Select("id").Where("username=?", name).First(&u)
+	if u.ID > 0 {
+		return errmsg.SUCCSE
+	}
+	return errmsg.ERROR_USER_NOT_EXIST
 }
